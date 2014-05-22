@@ -1,0 +1,29 @@
+body {
+    background-color: #777;
+}
+
+#container {
+    position: relative;;
+    margin: 10% 0 auto;
+    left: 34%;
+    width: 400px;
+    height: 400px;
+}
+
+#layer1, #layer2, #layer3 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+#layer1 {
+    z-index: 1;
+}
+
+#layer2 {
+    z-index: 2;
+}
+
+#layer3 {
+    z-index: 3;
+}

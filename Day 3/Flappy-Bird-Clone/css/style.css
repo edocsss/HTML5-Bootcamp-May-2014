@@ -1,0 +1,51 @@
+#background {
+    background-image: url(../images/stardust.png);
+    position: fixed;
+    width: 700px;
+    height: 450px;
+    margin: 6% 0 auto;
+    left: 24%;
+    z-index: 1;
+}
+
+#stage {
+    background-color: transparent;
+    position: fixed;
+    margin: 6% 0 auto;
+    left: 24%;
+    height: 450px;
+    width: 700px;
+    float: left;
+    z-index: 2;
+}
+
+#clouds {
+    position: fixed;
+    margin: 6% 0 auto;
+    left: 24%;
+    height: 450px;
+    width: 700px;
+    float: left;
+    z-index: 1;
+}
+
+.score {
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 7.5vw;
+    float: left;
+    text-align: center;
+    font-size: 3.6vw;
+    color: yellow;
+    font-family: sans-serif;
+    z-index: 3;
+}
+
+#time_score {
+    left: 67vw;
+}
+
+#point_score {
+    left: 30vw;
+}
