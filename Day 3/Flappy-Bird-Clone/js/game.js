@@ -9,12 +9,11 @@ function Game (stage) {
     this.width = this.stage.width;
     
     this.pipes = [];
+    this.drawPipes = true;
     
     //Create and let each pipe to move after an amount of time
     for (var i = 0; i < 3; i++) {
         this.pipes[i] = new Pipe(this, this.stage);
-        
-        //
         setTimeout(function (p) {
             p.animate();
         }.bind(this, this.pipes[i]), i * 1350); //i * 200 will put the waiting in the correct queue
@@ -32,12 +31,19 @@ function Game (stage) {
         this.clouds[i] = new Cloud();
         setTimeout(function (p) {    
             p.animate();
-            console.log('hey');
         }.bind(this, this.clouds[i]), i * 3000);
     }
     
+    //New object to check whether the bird touches the pipes
     this.collider = new Collider(this, this.bird, this.pipes, this.score);
+    
+    //New object to handle saving and restoring game data
+    this.storage = new Storage(this, this.bird, this.pipes, this.clouds);
+    
+    //Default tick
     this.lastTick = Date.now();
+    
+    //Start animating
     this.tick();
 }
 
@@ -61,9 +67,11 @@ Game.prototype.tick = function () {
     }
     
     //Drawing the pipes
-    for (var i = 0; i < this.pipes.length; i++) {
-        this.pipes[i].update(delta);
-        this.pipes[i].draw(this.ctx);
+    if (this.drawPipes) {
+        for (var i = 0; i < this.pipes.length; i++) {
+            this.pipes[i].update(delta);
+            this.pipes[i].draw(this.ctx);
+        }
     }
     
     //Check for any collision & update the score

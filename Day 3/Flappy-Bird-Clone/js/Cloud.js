@@ -7,7 +7,6 @@ function Cloud () {
     this.y = 50 + Math.random() * this.randomCounter % 300;
     
     this.vx = -100;
-    this.vy = 1;
     
     this.width = 170;
     this.height = 100;

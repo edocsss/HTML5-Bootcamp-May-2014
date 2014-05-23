@@ -29,6 +29,7 @@ Pipe.prototype.imageLoaded = function () {
 
 Pipe.prototype.animate = function () {
     this.active = true;
+    console.log(this.active, 'testing');
 };
 
 Pipe.prototype.update = function (delta) {
@@ -54,7 +55,7 @@ Pipe.prototype.recycle = function () {
 };
 
 Pipe.prototype.draw = function (ctx) {
-    if (this.loaded) {
+    if (this.loaded && this.active) {
         var moveX = this.x + this.width / 2;
         var moveY = this.height / 2;
         var upperPipeHeight = this.y - this.gapHeight;
