@@ -36,6 +36,11 @@ function Bird (game, stage) {
     
     //On click / on space bar pressed-> fly
     this.stage.addEventListener('click', this.flap.bind(this));
+    
+    //Prevent highlighting the time score board when double clicked
+    this.stage.onmousedown = function (e) { e.preventDefault(); };
+    
+    //Allow space bar to flap the bird
     window.addEventListener('keydown', this.flap.bind(this));
 }
 

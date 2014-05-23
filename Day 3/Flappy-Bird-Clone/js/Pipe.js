@@ -1,9 +1,10 @@
 function Pipe (game, stage) {
     this.game = game;
     this.stage = stage;
-    
+
+    this.randomCounter = ((12376186 * Math.random()) % 300) * Math.sin(Math.random()) * 100000;
     this.width = 100;
-    this.height = 30 + Math.random() * 100;
+    this.height = 30 + Math.floor((this.randomCounter * Math.random())) % 200;
     
     this.x = this.game.width;
     this.y = this.game.height - this.height;
@@ -47,7 +48,8 @@ Pipe.prototype.recycle = function () {
     this.color = 'green';
     
     //Changing the height of the pipe
-    this.height = 30 + Math.random() * 150;
+    this.randomCounter = ((12376186 * Math.random()) % 300) * Math.sin(Math.random()) * 100000;
+    this.height = 30 + Math.floor((this.randomCounter * Math.random())) % 200;
     this.y = this.game.height - this.height;
 };
 
