@@ -27,7 +27,7 @@ Collider.prototype.checkCollision = function () {
               (this.leftX > pipe.x && this.leftX < pipeRightX)) ) {
              
             if ((bottomBird > pipe.y) || (topBird < pipe.y - pipe.gapHeight)) {               
-                pipe.color = 'red';
+                //Reset the time score
                 this.game.die();
                 ret = -1;
             } 
@@ -36,10 +36,6 @@ Collider.prototype.checkCollision = function () {
             else {
                 ret = 1;
             }
-        }
-    
-        else {
-            pipe.color = 'green';
         }
     }
     

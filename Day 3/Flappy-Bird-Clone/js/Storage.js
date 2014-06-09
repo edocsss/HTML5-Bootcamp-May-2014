@@ -11,12 +11,14 @@ function Storage (game, bird, pipes, clouds) {
     this.loadButton.addEventListener('click', this.restore.bind(this));
 }
 
+
 //Save the properties of pipes as JSON string to the browser's LocalStorage if it is possible
 //No need to save the bird and clouds -> pointless
 Storage.prototype.save = function () {
     try {
         var data = {
-            pipesData: this.pipes,
+            'timeScore': this.game.score.timeElapsed,
+            'pointScore': this.game.score.counter
         };
         
         var dataStr = JSON.stringify(data);
@@ -24,33 +26,41 @@ Storage.prototype.save = function () {
         document.getElementById('message').textContent = "Game saved!";
         
     } catch (e) {
+        console.log(e);
         document.getElementById('message').textContent = "Unable to save game! Try again!";
     }
 };
+
 
 //Restore the data if the load button is pressed
 Storage.prototype.restore = function () {
     try {
         var restoredDataStr = window.localStorage.getItem('savedFlappy');
+        document.getElementById('message').textContent = "Game restored!";
     } catch (e) {
         console.log("Your browser does not support localStorage!");
         return;
     }
     
-    //Stop drawing the pipes and clear the canvas -> this will only remove the pipes as in the next tick, the bird and the clouds will be redrawn
-    this.game.drawPipes = false;
-    this.game.ctx.clearRect(0, 0, this.game.width, this.game.height);
-    
     //Check whether there is a saved data
     if (!restoredDataStr) {
+        //Stop drawing the pipes and clear the canvas -> this will only remove the pipes as in the next tick, the bird and the clouds will be redrawn
+        this.game.drawPipes = false;
+        this.game.ctx.clearRect(0, 0, this.game.width, this.game.height);
+        
+        //Resetting the objects and scores
+        this.game.score.reset();
+        this.game.score.counter = 0;
         this.defaultPipes(this.pipes);
     }
     
-    //If there is, it will reposition the pipes and the clouds as before
+    //If there is, it will change the scores into what have been saved
     else {
         var restoredData = JSON.parse(restoredDataStr);
         
-        setPositionBird(this.pipes, restoredData.pipesData);
+        //setPositionPipes(this.pipes, restoredData.pipesData);
+        this.game.score.counter = restoredData.pointScore;
+        this.game.score.timeElapsed = restoredData.timeScore;
     }
 };
 
@@ -63,7 +73,6 @@ Storage.prototype.defaultPipes = function (pipes) {
         pipes[i].x = this.game.width;
         pipes[i].height = 30 + Math.floor((pipes[i].randomCounter * Math.random())) % 200;
         pipes[i].y = pipes[i].game.height - pipes[i].height;
-        pipes[i].vx = -200;
         pipes[i].active = false;
         pipes[i].rotate = false;
     }
@@ -79,6 +88,7 @@ Storage.prototype.defaultPipes = function (pipes) {
     }.bind(this), 1000);
     
 };
+
 
 //A function just to help passing argument 'i' in a setTimeout function inside a loop -> which is troublesome if you don't create this function
 Storage.prototype.doSetTimeout = function (pipes, i) {

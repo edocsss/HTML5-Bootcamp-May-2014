@@ -32,7 +32,6 @@ function Bird (game, stage) {
     this.gravity = 1200;
     
     this.radius = this.height / 2;
-    this.color = 'yellow';
     
     //On click / on space bar pressed-> fly
     this.stage.addEventListener('click', this.flap.bind(this));
@@ -98,6 +97,8 @@ Bird.prototype.update = function (delta) {
     
     this.sprite.x = this.x - this.radius; //Will be always constant
     this.sprite.y = this.y - this.radius;
+    
+    //This will double count the ticking counter -> faster change of sprite -> better animation??
     this.sprite.tick();
     
     //Linear velocity -> no need to update the vx first

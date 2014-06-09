@@ -47,6 +47,8 @@ function Game (stage) {
     this.tick();
 }
 
+//This function keep track how many miliseconds have passed since this function is last called
+//This will tell the object to how far they should MOVE their position using vx and vy just like in physics after the delta miliseconds
 Game.prototype.tick = function () {
     var now = Date.now();
     var delta = now - this.lastTick;

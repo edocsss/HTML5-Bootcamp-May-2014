@@ -1,0 +1,7 @@
+{
+    "name": "Crappy Bird",
+    "main": "index.html",
+    "window": {
+        "toolbar": false
+    }
+}

@@ -30,7 +30,7 @@
 }
 
 .score {
-    position: absolute;
+    position: fixed;
     width: auto;
     height: auto;
     top: 7.5vw;
@@ -50,8 +50,28 @@
     left: 30vw;
 }
 
+#button_container {
+    position: fixed;
+    width: auto;
+    height: auto;
+    top: 40.5vw;
+    left: 37vw;
+}
+
 .button {
     width: 100px;
-    height: 50px;
+    height: 40px;
     font-weight: bold;
+    margin-left: 3vw;
+}
+
+#message {
+    position: absolute;
+    color: red;
+    width: 15vw;
+    left: 4.3vw;
+    text-align: center;
+    font-size: 2vw;
+    font-family: sans-serif;
+    padding-top: 0.5vw;
 }
