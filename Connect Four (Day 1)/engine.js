@@ -204,7 +204,6 @@
             else
                 break;
             
-            console.log(neswStreak);
             if (neswStreak === 4) {
                 this.messageEl.innerHTML = "Player " + player + " win!";
                 this.active = false;
